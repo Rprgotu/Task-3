@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Table Like Card</title>
+    <meta name="viewport" content="width=device-width">
+
+   
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.floatthead/1.4.2/jquery.floatThead.min.js"></script>
+    <script>
+        $(function () {
+         
+            loaddetails();
+        })
+        function loaddetails() {
+            
+            var output = " ";
+            $.getJSON("https://gist.githubusercontent.com/rominirani/8235702/raw/a50f7c449c41b6dc8eb87d8d393eeff62121b392/employees.json", function (response) {
+                $.each(response.Employees, function (k, v) {
+                    
+                    output += "<tr>"
+                    output += "<td data-title='Profile'><i class='fa fa-user fa-4' style='font-size:30px;color:green' ></i></td>" + "<td data-title='User ID'>" + v.userId + "</td><td data-title='Job Title'>" + v.jobTitleName + "</td><td data-title='Region'>" + v.region + "</td><td data-title='First Name'>" + v.firstName + "</td><td data-title='Last Name'>" + v.lastName + "</td><td data-title='Full Name'>" + v.preferredFullName + "</td><td data-title='Code'>" + v.employeeCode + "</td><td data-title='Phone No'>" + v.phoneNumber + "</td><td data-title='Email Address'>" + v.emailAddress + "</td>"
+                    output += "</tr>";
+                    $('#tblEmployee').append(output)
+                });
+            });
+            //.log(output);
+          ///$('#tblEmployee').append(output);
+        };
+    </script>
+</head>
+<body class="large-screen">
+    <div class="wrap">
+        
+        <div class="table-wrapper">
+            <table class="table-responsive card-list-table">
+                <thead>
+                    <tr>
+                        <th data-title="Profile Image">Profile Image</th>
+                        <th>User ID</th>
+                        <th>Job Title</th>
+                        <th>Region</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Full Name</th>
+                        <th>Employee Code</th>
+                        
+                        <th>Phone Number</th>
+                        <th>Email Address</th>
+                    </tr>
+                </thead>
+                <tbody id="tblEmployee">
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
